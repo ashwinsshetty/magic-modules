@@ -37,14 +37,8 @@ async:
   type: 'OpAsync'
   operation:
     base_url: '{{op_id}}'
-    path: 'name'
-    wait_ms: 1000
   result:
-    path: 'response'
     resource_inside_response: true
-  error:
-    path: 'error'
-    message: 'message'
 iam_policy:
   method_name_separator: ':'
   parent_resource_attribute: 'name'
@@ -127,7 +121,6 @@ examples:
   - name: 'cloudrunv2_service_multicontainer'
     primary_resource_id: 'default'
     primary_resource_name: 'fmt.Sprintf("tf-test-cloudrun-service%s", context["random_suffix"])'
-    min_version: 'beta'
     vars:
       cloud_run_service_name: 'cloudrun-service'
     ignore_read_extra:
@@ -160,6 +153,14 @@ examples:
     ignore_read_extra:
       - 'deletion_protection'
     external_providers: ["time"]
+  - name: 'cloudrunv2_service_invokeriam'
+    primary_resource_id: 'default'
+    primary_resource_name: 'fmt.Sprintf("tf-test-cloudrun-srv%s", context["random_suffix"])'
+    min_version: 'beta'
+    vars:
+      cloud_run_service_name: 'cloudrun-service'
+    ignore_read_extra:
+      - 'deletion_protection'
 virtual_fields:
   - name: 'deletion_protection'
     description: |
@@ -238,7 +239,7 @@ properties:
   - name: 'expireTime'
     type: Time
     description: |-
-      For a deleted resource, the time after which it will be permamently deleted.
+      For a deleted resource, the time after which it will be permanently deleted.
     output: true
   - name: 'creator'
     type: String
@@ -361,11 +362,12 @@ properties:
           - name: 'minInstanceCount'
             type: Integer
             description: |-
-              Minimum number of serving instances that this resource should have.
+              Minimum number of serving instances that this resource should have. Defaults to 0. Must not be greater than maximum instance count.
           - name: 'maxInstanceCount'
             type: Integer
             description: |-
-              Maximum number of serving instances that this resource should have.
+              Maximum number of serving instances that this resource should have. Must not be less than minimum instance count. If absent, Cloud Run will calculate
+              a default value based on the project's available container instances quota in the region and specified instance size.
       - name: 'vpcAccess'
         type: NestedObject
         description: |-
@@ -829,7 +831,6 @@ properties:
               type: NestedObject
               description: |-
                 Ephemeral storage used as a shared volume.
-              min_version: 'beta'
               # exactly_one_of:
               #   - template.0.volumes.0.secret
               #   - template.0.volumes.0.cloudSqlInstance
@@ -865,6 +866,14 @@ properties:
                   type: Boolean
                   description: If true, mount the GCS bucket as read-only
                   required: false
+                - name: 'mountOptions'
+                  min_version: 'beta'
+                  type: Array
+                  description: |
+                    A list of flags to pass to the gcsfuse command for configuring this volume.
+                    Flags should be passed without leading dashes.
+                  item_type:
+                    type: String
             - name: 'nfs'
               type: NestedObject
               description: Represents an NFS mount.
@@ -950,6 +959,10 @@ properties:
           type: String
           description: |
             Indicates a string to be part of the URI to exclusively reference this target.
+  - name: 'invokerIamDisabled'
+    type: Boolean
+    description: |
+      Disables IAM permission check for run.routes.invoke for callers of this service. This feature is available by invitation only. For more information, visit https://cloud.google.com/run/docs/securing/managing-access#invoker_check.
   - name: 'observedGeneration'
     type: String
     description: |
@@ -1098,6 +1111,13 @@ properties:
     type: String
     description: |
       The main URI in which this Service is serving traffic.
+    output: true
+  - name: 'urls'
+    type: Array
+    item_type:
+      type: String
+    description: |-
+      All URLs serving traffic for this Service.
     output: true
   - name: 'reconciling'
     type: Boolean

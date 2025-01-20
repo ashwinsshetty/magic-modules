@@ -46,6 +46,11 @@ var ServicesListBeta = mapOf(
         "displayName" to "Apigee",
         "path" to "./google-beta/services/apigee"
     ),
+    "apihub" to mapOf(
+        "name" to "apihub",
+        "displayName" to "Apihub",
+        "path" to "./google-beta/services/apihub"
+    ),
     "apikeys" to mapOf(
         "name" to "apikeys",
         "displayName" to "Apikeys",
@@ -141,6 +146,11 @@ var ServicesListBeta = mapOf(
         "displayName" to "Certificatemanager",
         "path" to "./google-beta/services/certificatemanager"
     ),
+    "chronicle" to mapOf(
+        "name" to "chronicle",
+        "displayName" to "Chronicle",
+        "path" to "./google-beta/services/chronicle"
+    ),
     "cloudasset" to mapOf(
         "name" to "cloudasset",
         "displayName" to "Cloudasset",
@@ -210,6 +220,11 @@ var ServicesListBeta = mapOf(
         "name" to "cloudtasks",
         "displayName" to "Cloudtasks",
         "path" to "./google-beta/services/cloudtasks"
+    ),
+    "colab" to mapOf(
+        "name" to "colab",
+        "displayName" to "Colab",
+        "path" to "./google-beta/services/colab"
     ),
     "composer" to mapOf(
         "name" to "composer",
@@ -295,6 +310,11 @@ var ServicesListBeta = mapOf(
         "name" to "dataproc",
         "displayName" to "Dataproc",
         "path" to "./google-beta/services/dataproc"
+    ),
+    "dataprocgdc" to mapOf(
+        "name" to "dataprocgdc",
+        "displayName" to "Dataproc on GDC",
+        "path" to "./google-beta/services/dataprocgdc"
     ),
     "dataprocmetastore" to mapOf(
         "name" to "dataprocmetastore",
@@ -411,6 +431,11 @@ var ServicesListBeta = mapOf(
         "displayName" to "Firestore",
         "path" to "./google-beta/services/firestore"
     ),
+    "gemini" to mapOf(
+        "name" to "gemini",
+        "displayName" to "Gemini",
+        "path" to "./google-beta/services/gemini"
+    ),
     "gkebackup" to mapOf(
         "name" to "gkebackup",
         "displayName" to "Gkebackup",
@@ -440,6 +465,11 @@ var ServicesListBeta = mapOf(
         "name" to "iam2",
         "displayName" to "Iam2",
         "path" to "./google-beta/services/iam2"
+    ),
+    "iam3" to mapOf(
+        "name" to "iam3",
+        "displayName" to "Iam3",
+        "path" to "./google-beta/services/iam3"
     ),
     "iambeta" to mapOf(
         "name" to "iambeta",
@@ -546,6 +576,11 @@ var ServicesListBeta = mapOf(
         "displayName" to "Notebooks",
         "path" to "./google-beta/services/notebooks"
     ),
+    "oracledatabase" to mapOf(
+        "name" to "oracledatabase",
+        "displayName" to "OracleDatabase",
+        "path" to "./google-beta/services/oracledatabase"
+    ),
     "orgpolicy" to mapOf(
         "name" to "orgpolicy",
         "displayName" to "Orgpolicy",
@@ -565,6 +600,16 @@ var ServicesListBeta = mapOf(
         "name" to "parallelstore",
         "displayName" to "Parallelstore",
         "path" to "./google/services/parallelstore"
+    ),
+    "parametermanager" to mapOf(
+        "name" to "parametermanager",
+        "displayName" to "Parametermanager",
+        "path" to "./google-beta/services/parametermanager"
+    ),
+    "parametermanagerregional" to mapOf(
+        "name" to "parametermanagerregional",
+        "displayName" to "Parametermanagerregional",
+        "path" to "./google-beta/services/parametermanagerregional"
     ),
     "privateca" to mapOf(
         "name" to "privateca",
@@ -725,6 +770,11 @@ var ServicesListBeta = mapOf(
         "name" to "tpuv2",
         "displayName" to "Tpuv2",
         "path" to "./google-beta/services/tpuv2"
+    ),
+     "transcoder" to mapOf(
+        "name" to "transcoder",
+        "displayName" to "Transcoder",
+        "path" to "./google-beta/services/transcoder"
     ),
     "vertexai" to mapOf(
         "name" to "vertexai",
